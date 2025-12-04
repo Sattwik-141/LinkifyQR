@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+
+<body
+    class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center text-slate-100">
+    <div class="max-w-xl w-full px-4">
+        <div class="bg-slate-900/60 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/60 p-8 md:p-10">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+                        QR Code Generator
+                    </h1>
+                    <p class="text-slate-300 mt-2 text-sm md:text-base">
+                        Paste any URL and get a shareable QR code instantly.
+                    </p>
+                </div>
+                <div class="hidden md:block text-4xl">📱</div>
+            </div>
+
+            <form method="POST" action="/" id="qrForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-200 mb-1">
+                        URL
+                    </label>
+                    <div class="relative">
+                        <input type="text" name="url" placeholder="https://eg.com" required
+                            class="w-full rounded-2xl bg-slate-800 border border-slate-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/60 outline-none px-4 py-3 pr-10 text-sm md:text-base">
+                        <span class="absolute inset-y-0 right-3 flex items-center text-slate-400 text-lg">
+                            🔗
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1">
+                        Tip: You can also use it for links to PDFs, Google Forms, app links, etc.
+                    </p>
+                </div>
+
+                <button type="submit" id="generateBtn"
+                    class="w-full flex items-center justify-center gap-2 rounded-2xl bg-blue-500 hover:bg-blue-600 active:scale-[0.98] transition transform duration-150 text-white font-semibold py-3 text-sm md:text-base shadow-lg shadow-blue-500/30">
+                    <span id="btnText">Generate QR Code</span>
+                    <span id="btnSpinner" class="hidden animate-spin text-lg">⏳</span>
+                </button>
+            </form>
+
+            <div class="mt-6 text-xs text-slate-500 text-center">
+                Your QR image is generated on the fly – no data is stored.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Small UX: show "Generating..." while form submits
+        const form = document.getElementById('qrForm');
+        const btn = document.getElementById('generateBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
+
+        form.addEventListener('submit', () => {
+            btn.disabled = true;
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
+            btnText.textContent = 'Generating...';
+            btnSpinner.classList.remove('hidden');
+        });
+    </script>
+</body>
+
+</html>
