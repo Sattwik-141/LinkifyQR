@@ -34,8 +34,8 @@ A simple and efficient **URL to QR Code Generator** that converts any website UR
 URL-to-QR/
 │
 ├── index.html
-├── style.css
-├── script.js
+├── result.html
+├── app.py
 └── README.md
 ```
 
